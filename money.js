@@ -29,11 +29,11 @@
     checkAndApplyPenalty: function() {
         if (this.amount <= 0) {
             window.kim.applyEffect({
-                hp: { min: -20, max: -20 },
-                fp: { min: -20, max: -20 },
-                sp: { min: -20, max: -20 }
+                hp: { min: -10, max: -20 },
+                fp: { min: -10, max: -20 },
+                sp: { min: -10, max: -20 }
             });
-            this.addLog("돈이 없어 굶주림과 추위로 모든 스탯이 20씩 감소합니다!");
+            this.addLog("돈이 없어 굶주림과 추위로 모든 스탯이 감소합니다!");
         }
     },
 
@@ -47,10 +47,10 @@
             this.subtract(10000, "수도세");
         }
         if (date === 15) {
-            this.subtract(400000, "월세");
+            this.subtract(300000, "월세");
         }
         if (date === 18) {
-            let gas = (month === 12 || month <= 3) ? 8000 : 200000;
+            let gas = (month === 12 || month <= 3) ? 8000 : 120000;
             this.subtract(gas, "가스비");
         }
         if (date === 20) {
