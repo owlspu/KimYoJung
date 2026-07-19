@@ -1,0 +1,50 @@
+﻿<!doctype html>
+<html lang="kor">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>김요정 키우기</title>	
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+	<div class="title"><h1>김요정 키우기</h1></div>
+	<div class="character">
+		<div class="icons-top"></div>
+			<div class="fairy-area">
+				<div class="fairy">
+					<img class="wing left" src="image2/lwing.png">
+					<img class="wing right" src="image2/rwing.png">
+					<img class="body" src="image2/body.png">
+				</div>
+				<div class="garden" id="garden-area">🌱</div>
+			</div>
+		<div class="icons-bottom"></div>
+	</div>
+	<div class="button">
+		<!-- 새 게임: 데이터를 초기화하고 main.html로 이동 -->
+		<button onclick="startNewGame()">새 게임</button>
+		<!-- 불러오기: 기존 데이터로 main.html로 이동 -->
+		<button onclick="loadGameAndRedirect()">불러오기</button>
+	</div>
+	<div class="intro">
+		<br>
+		Version 1.0<br>
+		제작자 : 모과 @168163ba
+	</div>
+	<script>
+	function startNewGame() {
+		localStorage.removeItem("kimFairySave"); // 저장 데이터 삭제
+		window.location.href = "main.html";      // 게임 화면으로 이동
+	}
+
+	function loadGameAndRedirect() {
+		if (localStorage.getItem("kimFairySave")) {
+			window.location.href = "main.html";
+		} else {
+			alert("저장된 데이터가 없습니다.");
+		}
+	}
+	</script>
+</body>
+</html>

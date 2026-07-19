@@ -1,0 +1,231 @@
+﻿@charset "utf-8";
+/* CSS Document */
+
+@media (max-width: 768px) {
+	body {
+    	max-width:768px;
+    	margin:auto;
+		padding: 12px;
+	}
+	button {
+		font-size: 22px;
+		padding: 12px;
+	}
+	/* 모달창 공통 스타일 */
+	.modal {
+		display: none; 
+		position: fixed; 
+		top: 0; left: 0; 
+		width: 100%; height: 100%; 
+		background: rgba(0,0,0,0.7); 
+		z-index: 2000;
+		overflow-y: auto; /* 내용이 길 경우 스크롤 */
+	}
+
+	/* 모달 내부 컨텐츠 */
+	.modal-content {
+		width: 90%;          /* 모바일에서 화면의 90% 차지 */
+		max-width: 450px;    /* 데스크탑에서는 최대 450px만 */
+		margin: 50px auto;   /* 상단 여백 조정 */
+		background: white; 
+		padding: 20px; 
+		text-align: center; 
+		border-radius: 10px;
+		box-sizing: border-box;
+	}
+}
+
+body {
+	align-content: center;
+	align-items: center;
+	text-align: center;
+	font-size: 16px;
+	line-height: 1.8em;
+}
+
+div {
+	flex: auto;
+}
+
+button {
+	font-size: 13px;
+	margin: 2px;
+	padding: 2px 8px;
+}
+
+#help {
+    position: relative;
+	display: flex;
+    align-content: center;
+	flex-direction:column;
+	align-items: center;
+    font-size: 14px;
+}
+
+#money-table {
+	margin: 8px;
+	font-size: 13px;
+	line-height: 1.5em;
+}
+
+.title {
+}
+
+.character{
+    position:relative;
+	display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+	height: 200px;
+}
+
+.icons-top {
+    animation: float 2s infinite ease-in-out;
+	padding: 12px;
+}
+
+.icons-bottom {
+    animation: float 2s infinite ease-in-out;
+	padding: 12px;
+}
+
+
+.gauge {
+    width: 100px;
+    height: 15px;
+    border: 1px solid #333;
+    background-color: #eee;
+    display: inline-block;
+    margin-left: 5px;
+}
+.gauge-fill {
+    height: 100%;
+    width: 100%; /* 이 값을 자바스크립트로 조절 */
+	transition: width 0.3s ease; /* 부드럽게 움직이게 하는 효과 */
+}
+
+/* 개별 색상 지정 */
+#hp-bar { background-color: #EB3434; } /* 빨간색 */
+#fp-bar { background-color: #25C740; } /* 초록색 */
+#sp-bar { background-color: #f06595; } /* 분홍색 */
+
+/* 1. 기본은 무조건 안 보이게 */
+.modal {
+    display: none; 
+    position: fixed; 
+    top: 0; left: 0; 
+    width: 100%; height: 100%; 
+    background: rgba(0,0,0,0.7); 
+    z-index: 2000;
+}
+
+/* 2. .open 클래스가 붙었을 때만 flex로 중앙 정렬해서 보여줌 */
+.modal.open {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 3. 모달 내부 컨텐츠 */
+.modal-content {
+    width: 90%;
+    max-width: 450px;
+    background: white; 
+    padding: 20px; 
+    text-align: center; 
+    border-radius: 10px;
+}
+
+
+/* 김요정 */
+.fairy-area{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+	padding: 20px;
+}
+
+.fairy{
+    position:relative;
+    width:128px;
+    height:110px;
+    margin:0 auto;
+    animation:
+        float 2.6s ease-in-out infinite;
+	filter: drop-shadow(0 5px 4px rgba(0,0,0,.25));
+}
+
+.halo{
+    position:absolute;
+    width:140px;
+	height: 128px;
+	left: -10px;
+    z-index:1;
+}
+
+/* 공통 */
+.fairy img{
+    position:absolute;
+    image-rendering:pixelated;
+}
+/* 몸 */
+.body{
+	width:80px;
+    left:24px;
+    top:26px;
+    z-index:3;
+}
+/* 왼쪽 날개 */
+.left{
+	width: 80px;
+    left:24px;
+    top:32px;
+    transform-origin:right center;
+    animation:
+        leftWing 0.75s ease-in-out infinite;
+}
+/* 오른쪽 날개 */
+.right{
+	width: 80px;
+    left:24px;
+    top:32px;
+    transform-origin:left center;
+    animation:
+        rightWing 0.75s ease-in-out infinite;
+}
+
+/* 날개 */
+@keyframes leftWing{
+	0%   { transform:rotate(-5deg); }
+	50%  { transform:rotate(5deg); }
+	100% { transform:rotate(-5deg); }
+}
+@keyframes rightWing{
+	0%   { transform:rotate(5deg); }
+	50%  { transform:rotate(-5deg); }
+	100% { transform:rotate(5deg); }
+}
+/* 몸 둥실 */
+@keyframes float{
+	0%{
+	transform:
+	translate(0px,0px);
+	}
+	25%{
+	transform:
+	translate(-1px,-2px);
+	}
+	50%{
+	transform:
+	translate(0px,-5px);
+	}
+	75%{
+	transform:
+	translate(1px,-2px);
+	}
+	100%{
+	transform:
+	translate(0px,0px);
+	}
+}

@@ -1,0 +1,112 @@
+﻿<!doctype html>
+<html lang="kor">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>김요정 키우기</title>	
+ <link rel="stylesheet" href="style.css">
+	<script src="calendar.js"></script>
+	<script src="world.js"></script>
+	<script src="kim.js"></script>
+	<script src="fairy.js"></script>
+	<script src="garden.js"></script>
+	<script src="event.js"></script>
+	<script src="money.js"></script>
+	<script src="ui.js"></script>
+	<script src="game.js"></script>
+	<script src="save.js"></script>
+</head>
+
+<body>
+	<div class="title"><h1>김요정 키우기</h1></div>
+	<div class="calendar"></div><div class="weather"></div>
+	<div class="character">
+		<div class="icons-top"></div>
+			<div class="fairy-area">
+				<div class="fairy">
+   					<img class="halo" src="image2/halo100a.png">
+					<img class="wing left" src="image2/lwing.png">
+					<img class="wing right" src="image2/rwing.png">
+					<img class="body" src="image2/body.png">
+				</div>
+				<div class="garden" id="garden-area">🌱</div>
+			</div>
+		<div class="icons-bottom"></div>
+	</div>
+	<div class="main-log">김요정이 태어났습니다</div>
+	<div class="status-log"></div>
+	<div class="power">
+    <div class="stat-item">
+        ❤️ <span class="HP-text">100/100</span>
+        <div class="gauge"><div class="gauge-fill" id="hp-bar" style="width: 100%;"></div></div>
+    </div>
+    <div class="stat-item">
+        🧚 <span class="FP-text">100/100</span>
+        <div class="gauge"><div class="gauge-fill" id="fp-bar" style="width: 100%;"></div></div>
+    </div>
+    <div class="stat-item">
+        🧠 <span class="SP-text">100/100</span>
+        <div class="gauge"><div class="gauge-fill" id="sp-bar" style="width: 100%;"></div></div>
+    </div>
+</div>
+	<div id="money"></div>
+	<div id="money-log"></div>
+	<div class="button">
+		<button class="free-button" id="free-button" onclick="window.nextDay()">1. 자유롭게 두기</button> 
+    	<button onclick="window.buryKim()">2. 땅에 묻기</button>
+    	<button onclick="window.restKim()">3. 집에 넣기</button>
+    	<button onclick="window.receiveRequest()">4. 의뢰 받기</button>
+		<button onclick="window.ui.openCloset()">옷장</button>
+		<button onclick="showGameInfo()">버튼설명</button>
+		<button onclick="showMoneyInfo()">정기 지출 내역</button>
+		<button onclick="saveGame()">저장하기</button>
+	</div>
+	<!-- 옷장 -->
+	<div id="closet-modal" class="modal">
+		<div class="modal-content">
+			<h3>옷장</h3>
+			<img id="preview-img" src="" style="width:80px; height:auto; margin:10px;">
+			<p>김요정은 따뜻한 것을 좋아합니다</p>
+			<p id="preview-name">현재: 흰티에 청바지</p>
+			<p id="preview-stats" style="color: #555; font-size: 0.9em;"></p>
+			<div id="closet-buttons" style="display:flex; flex-direction:column; gap:5px;"></div>
+			<button onclick="document.getElementById('closet-modal').style.display='none'" style="margin-top:15px;">닫기</button>
+		</div>
+	</div>
+	<!-- 버튼 설명 모달 -->
+	<div id="button-modal" class="modal">
+		<div class="modal-content">
+			<h3 style="text-align:center;">🎮 게임 조작법 🎮</h3>
+			<p style="white-space: pre-line; line-height: 1.6;">
+				1. 자유롭게 두기 (1일): 랜덤 이벤트 발생 (키: 1)
+				2. 땅에 묻기 (2일): FP 회복 + HP 소모 (키: 2)
+				3. 집에 넣기 (1일): HP 회복 + SP 소모 (키: 3)
+				4. 의뢰 받기 (1일): SP 소모 + 수입 발생 (키: 4)
+				5. 옷장: 옷을 골라 체감온도를 조절하세요!
+				숫자키는 PC에서만 사용할 수 있습니다
+			</p>
+			<div style="text-align:center;">
+				<button onclick="document.getElementById('button-modal').style.display='none'">닫기</button>
+			</div>
+		</div>
+	</div>
+	<!-- 돈 나가는 날 모달 -->
+	<div id="info-modal" class="modal">
+		<div class="modal-content">
+			<h3 style="text-align:center;">💸 돈 나가는 날 💸</h3>
+			<p style="white-space: pre-line; line-height: 1.6;">
+				매월 1일 : 할머니 생활비와 병원비 총 700,000원
+				매월 8일 : 관리비 90,000원 / 수도세 10,000원
+				매월 15일 : 월세 400,000원
+				매월 18일 : 가스요금 쓴 대로 (8,000원~200,000원)
+				매월 20일 : 전기요금 쓴 대로 (10,000원~50,000원)
+				
+				<font color="#4e4e4e;">인간으로 살기 참 힘들다...</font>
+			</p>
+			<div style="text-align:center;">
+				<button onclick="document.getElementById('info-modal').style.display='none'">닫기</button>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
