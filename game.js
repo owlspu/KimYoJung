@@ -103,10 +103,10 @@ window.showEnding = function(reason) {
         <p>"왜 그리 날 대충 키웠어어...!"</p>
         <hr>
         <p>생존 기간: ${calendar.year}년 ${calendar.month}월 ${calendar.day}일</p>
-        <p>의뢰받은 초록이: ${kimData.stats.questCount}회</p>
-        <p>먹은 초콜릿: ${kimData.stats.chocoCount}개</p>
-        <p>먹은 아이스크림: ${kimData.stats.iceCount}개</p>
-        <p>배웅한 홀씨: ${kimData.stats.seedCount}회</p>
+        <p>🌱 의뢰받은 초록이: ${kimData.stats.questCount}회</p>
+        <p>🍫 먹은 초콜릿: ${kimData.stats.chocoCount}개</p>
+        <p>🍦 먹은 아이스크림: ${kimData.stats.iceCount}개</p>
+        <p>🌼 배웅한 홀씨: ${kimData.stats.seedCount}회</p>
         <button onclick="location.reload()">다시 시작하기</button>
     `;
     document.body.appendChild(overlay);

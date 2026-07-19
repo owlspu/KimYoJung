@@ -50,7 +50,7 @@
             this.subtract(300000, "월세");
         }
         if (date === 18) {
-            let gas = (month === 12 || month <= 3) ? 8000 : 120000;
+            let gas = (month === 12 || month <= 3) ? 8000 : 200000;
             this.subtract(gas, "가스비");
         }
         if (date === 20) {
@@ -61,7 +61,7 @@
     
     tryEat: function() {
         if (Math.random() < 0.3) {
-            let cost = Math.floor(Math.random() * 4) * 8000 + 20000;
+            let cost = Math.floor(Math.random() * 13) * 1000 + 8000;
             this.subtract(cost, "식비");
         }
     }

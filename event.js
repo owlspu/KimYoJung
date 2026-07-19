@@ -259,34 +259,42 @@ window.receiveRequest = function() {
     // 1. FP 랜덤 소모 (1~90)
     const fpCost = Math.floor(Math.random() * 90) + 1;
     
-    // FP가 충분한지 체크 (선택사항: 없으면 실행 안 되게)
+    // 2. FP가 충분한지 체크 (지금 가진 FP보다 더 많이 소모하는 의뢰는 거절)
     if (window.kim.data.fp < fpCost) {
-        alert("FP가 부족합니다!");
+        // 아예 의뢰를 받지 않거나, 가진 만큼만 쓰도록 제한할 수 있습니다.
+        // 여기서는 의뢰를 거절하는 것으로 처리합니다.
+        const logContainer = document.querySelector('.main-log');
+        if (logContainer) {
+            logContainer.innerHTML = `<div>의뢰가 들어왔으나 FP가 부족하여 거절했습니다.</div>` + logContainer.innerHTML;
+        }
         return;
     }
     
-    // 2. FP 소모 및 돈 획득
-    window.kim.data.fp -= fpCost; // FP 차감
-    const reward = fpCost * 20000; // FP 1당 3만원
+    // 3. FP 소모 및 돈 획득
+    window.kim.data.fp -= fpCost;
+    const reward = fpCost * 20000;
     money.add(reward, "의뢰 보상");
-	kimData.stats.questCount++;
+    kimData.stats.questCount++;
     
-    // 3. 메시지 결정
+    // 4. 메시지 결정 (범위 명시)
     let msg = "";
-    if (fpCost <= 25) msg = "열매를 맺으라고 응원했습니다.";
-    else if (fpCost <= 50) msg = "시들었던 초록이를 건강하게 해줬습니다.";
-    else if (fpCost <= 70) msg = "죽어가던 초록이를 되살렸습니다.";
-    else msg = "꽃대를 만들도록 응원했습니다.";
+    if (fpCost <= 25) {
+        msg = "열매를 맺으라고 응원했습니다.";
+    } else if (fpCost <= 50) {
+        msg = "시들었던 초록이를 건강하게 해줬습니다.";
+    } else if (fpCost <= 70) {
+        msg = "죽어가던 초록이를 되살렸습니다.";
+    } else {
+        // 71 ~ 90 사이의 의뢰
+        msg = "꽃대를 만들도록 응원했습니다.";
+    }
     
-    // 4. 로그 출력
+    // 5. 로그 출력 및 업데이트
     const logContainer = document.querySelector('.main-log');
     if (logContainer) {
         logContainer.innerHTML = `<div>의뢰 완료: ${msg} (FP -${fpCost}, 보상 +${reward.toLocaleString()}원)</div>` + logContainer.innerHTML;
-    } else {
-        console.log("main-log 클래스를 가진 요소를 찾을 수 없습니다.");
     }
     
-    // 5. 화면 업데이트
     window.ui.refresh();
-	window.checkStatus();
+    window.checkStatus();
 };
