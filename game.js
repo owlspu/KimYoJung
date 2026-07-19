@@ -141,7 +141,7 @@ window.showSuccessEnding = function() {
         if (clickCount === 3) textEl.innerText = '...';
         if (clickCount === 4) textEl.innerText = '"사장님 계세요?"';
         if (clickCount === 5) {
-            textEl.innerHTML = `김요정이 풍란을 들고온 지민을 마주쳤습니다.<br>앞으로 어떻게 될까요?<br><img src="image2/ending.png" width="120px"><br>결과는 [괜찮아요? 괜찮아요. 괜찮아.] 에서 확인하세요<br>` +
+            textEl.innerHTML = `김요정이 풍란을 들고온 손님을 마주쳤습니다<br>앞으로 어떻게 될까요?<br><img src="image2/ending.png" width="120px"><br>` +
             `<p>🌱 의뢰받은 초록이: ${kimData.stats.questCount}회</p>` +
             `<p>🍫 먹은 초콜릿: ${kimData.stats.chocoCount}개</p>` +
             `<p>🍦 먹은 아이스크림: ${kimData.stats.iceCount}개</p>` +
