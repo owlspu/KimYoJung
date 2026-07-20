@@ -1,14 +1,5 @@
 ﻿// JavaScript Document
 // game
-// main.html이 로드될 때 실행
-window.onload = function() {
-    const saved = localStorage.getItem("kimFairySave");
-    if (saved) {
-        // 데이터가 있으면 불러오기 실행
-        window.loadGame(); 
-        console.log("저장된 데이터를 불러왔습니다.");
-    }
-};
 
 window.nextDay = function(triggerEvent = true) {
     const date = window.calendar.nextDay(); 
@@ -59,8 +50,9 @@ window.restKim = function() {
 };
 
 window.onload = function() {
-	window.calendar.updateDisplay();
-	window.world.updateWeather(window.calendar.month);
+    if (localStorage.getItem("kimFairySave")) window.loadGame();
+    window.calendar.updateDisplay();
+    window.world.updateWeather(window.calendar.month);
     window.ui.refresh();
 };
 

@@ -181,8 +181,6 @@ window.eventManager = {
 			return;
 		}
 
-        if (possibleEvents.length === 0) return;
-
         const totalWeight = possibleEvents.reduce((sum, e) => sum + (Number(e.weight) || 1), 0);
 			let random = Math.random() * totalWeight;
 

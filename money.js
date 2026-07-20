@@ -50,11 +50,11 @@
             this.subtract(300000, "월세");
         }
         if (date === 18) {
-            let gas = (month === 12 || month <= 3) ? 8000 : 200000;
+            let gas = (month === 12 || month <= 3) ? 200000 : 8000;
             this.subtract(gas, "가스비");
         }
         if (date === 20) {
-            let elec = (month >= 6 && month <= 9) ? 5000 : 50000;
+            let elec = (month >= 6 && month <= 9) ? 50000 : 5000;
             this.subtract(elec, "전기세");
         }
     },
