@@ -5,23 +5,23 @@ const kimData = {
     hp: 100,
     fp: 100,
     sp: 100,
-    inventory: ["도롱이 뉴발 패딩", "랄프로렌 코트", "뉴발 후드티", "흰티에 청바지", "토레타 원피스"],
+    inventory: ["도롱이 누발 패딩", "랄푸로렌 코트", "누발 후드티", "티에 청바지", "토레따 원피스"],
     equipped: {
-        clothes: "흰티에 청바지"
+        clothes: "티에 청바지"
     },
 	clothesStats: {
-        "흰티에 청바지": 0,
-        "도롱이 뉴발 패딩": 28,
-        "랄프로렌 코트": 18,
-		"뉴발 후드티": 5,
-        "토레타 원피스": -10
+        "티에 청바지": 0,
+        "도롱이 누발 패딩": 28,
+        "랄푸로렌 코트": 18,
+		"누발 후드티": 5,
+        "토레따 원피스": -5
     },
     clothesImages: {
-        "흰티에 청바지": "image2/body.png",
-        "도롱이 뉴발 패딩": "image2/padding.png",
-        "랄프로렌 코트": "image2/coat.png",
-        "뉴발 후드티": "image2/hoody.png",
-        "토레타 원피스": "image2/opc.png"
+        "티에 청바지": "image2/body.png",
+        "도롱이 누발 패딩": "image2/padding.png",
+        "랄푸로렌 코트": "image2/coat.png",
+        "누발 후드티": "image2/hoody.png",
+        "토레따 원피스": "image2/opc.png"
     },
 	stats: {
         questCount: 0,      // 의뢰 받은 횟수
