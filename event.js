@@ -281,7 +281,7 @@ window.receiveRequest = function() {
         // 여기서는 의뢰를 거절하는 것으로 처리합니다.
         const logContainer = document.querySelector('.main-log');
         if (logContainer) {
-            logContainer.innerHTML = `<div>의뢰가 들어왔으나 FP가 부족하여 거절했습니다.</div>` + logContainer.innerHTML;
+            logContainer.innerHTML = `의뢰가 들어왔으나 FP가 부족하여 거절했습니다.`;
         }
         return;
     }
@@ -308,7 +308,7 @@ window.receiveRequest = function() {
     // 5. 로그 출력 및 업데이트
     const logContainer = document.querySelector('.main-log');
     if (logContainer) {
-        logContainer.innerHTML = `<div>의뢰 완료: ${msg} (FP -${fpCost}, 보상 +${reward.toLocaleString()}원)</div>` + logContainer.innerHTML;
+        logContainer.innerHTML = `의뢰 완료: ${msg}<br>FP -${fpCost}, 보상 +${reward.toLocaleString()}원`;
     }
     
     window.ui.refresh();
