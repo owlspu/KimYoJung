@@ -48,16 +48,25 @@ function getWeatherData(type) {
 
 // 메인 업데이트 함수
 function updateWeather(m) {
-    // 1. 기온 결정
-    let minTemp, maxTemp;
-    if (m === 12 || m === 1 ) { minTemp = -15; maxTemp = 0; }
-    else if (m >= 2 && m <= 3) { minTemp = 0; maxTemp = 10; }
-    else if (m >= 4 && m <= 5) { minTemp = 10; maxTemp = 23; }
-    else if (m >= 6 && m <= 9) { minTemp = 23; maxTemp = 35; }
-    else { minTemp = 10; maxTemp = 23; }
-    
-    const temp = Math.floor(Math.random() * (maxTemp - minTemp + 1)) + minTemp;
-
+    // 월별 [최저기온, 최고기온] — 조절은 여기 숫자만 바꾸면 됨
+	const monthTemp = {
+		1:  [-17, 0],
+		2:  [-8, 1],
+		3:  [-2, 7],
+		4:  [4, 13],
+		5:  [10, 19],
+		6:  [16, 25],
+		7:  [22, 31],
+		8:  [28, 37],
+		9:  [24, 33],
+		10: [18, 27],
+		11: [12, 21],
+		12: [-10, 8]
+	};
+	// 1. 기온 결정
+	const [minTemp, maxTemp] = monthTemp[m] || [10, 23];
+	const temp = Math.floor(Math.random() * (maxTemp - minTemp + 1)) + minTemp;
+	
     // 2. ★ 온도 기반 날씨 타입 결정 (여기가 핵심!)
     let type;
     
