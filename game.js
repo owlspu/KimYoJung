@@ -133,7 +133,7 @@ window.showSuccessEnding = function() {
         if (clickCount === 3) textEl.innerText = '...';
         if (clickCount === 4) textEl.innerText = '"사장님 계세요?"';
         if (clickCount === 5) {
-            textEl.innerHTML = `김요정의 앞에 풍란을 살려달라는 고객이 나타났습니다<br>인생이 단 한 사람으로 인해 변하기도 한다는데...<br>과연 김요정의 요생(?)은 어떻게 될까요?<br><img src="image2/ending.png" width="120px"><br>` +
+            textEl.innerHTML = `김요정의 앞에 커피와 탄산수를 부어 죽어가는 풍란을<br>살려달라는 고객이 나타났습니다<br>인생이 단 한 사람으로 인해 변하기도 한다는데...<br>과연 이 사람은 귀인일까요, 웬수가 될까요?<br><img src="image2/ending.png" width="120px"><br>` +
             `<p>🌱 의뢰받은 초록이: ${kimData.stats.questCount}회</p>` +
             `<p>🍫 먹은 초콜릿: ${kimData.stats.chocoCount}개</p>` +
             `<p>🍦 먹은 아이스크림: ${kimData.stats.iceCount}개</p>` +
