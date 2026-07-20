@@ -141,6 +141,24 @@ window.eventList = [
 	{"name": "김요정이 눈사람을 만들었습니다", "weight": 20, "requiredFeel": "cold", "requiredTags": "snowy", "hpFrom": -5, "hpTo": -10, "spFrom": 1, "spTo": 10},
 	{"name": "김요정이 눈의 천사를 만들었습니다", "weight": 50, "requiredFeel": "cold", "requiredTags": "snow", "hpFrom": -1, "hpTo": -5, "spFrom": 1, "spTo": 10},
 	{"name": "김요정이 눈의 천사를 만들었습니다", "weight": 20, "requiredFeel": "cold", "requiredTags": "snowy", "hpFrom": -5, "hpTo": -10, "spFrom": 1, "spTo": 10},
+	{"name": "김요정이 자연적으로 생긴 무지개를 보고 한참 멍때렸습니다.", "weight": 8, "requiredTags": "rain", "spFrom": 10, "spTo": 20, "fpFrom": 3, "fpTo": 10},
+	{"name": "김요정이 초록이가 꽃을 피우는 것을 보았습니다.", "weight": 2, "fpFrom": 15, "fpTo": 30, "spFrom": 15, "spTo": 30},
+	{"name": "누군가 문 앞에 시든 화분을 두고 갔습니다.", "weight": 8, "fpFrom": -1, "fpTo": -10, "spFrom": 5, "spTo": 20, "money": 500, "reason": "흙"},
+	{"name": "김요정의 정원에서 길고양이가 낮잠을 자고 갔습니다.", "weight": 15, "hpFrom": 5, "hpTo": 15, "spFrom": 10, "spTo": 20},
+	{"name": "김요정이 낙엽을 잔뜩 모아 이불처럼 덮고 낮잠 잤습니다.", "weight": 12, "requiredMonth": [10, 11], "hpFrom": 10, "hpTo": 20, "spFrom": 5, "spTo": 15},
+	{"name": "김요정이 배웅한 홀씨가 민들레로 발견되었습니다.", "weight": 5, "requiredSeed": 3, "requiredTags": "wind", "fpFrom": 10, "fpTo": 25},
+	{"name": "김요정이 꿀벌을 구경하다 벌에 쏘였습니다.", "weight": 10, "requiredFeel": "hot", "hpFrom": -5, "hpTo": -15, "spFrom": 1, "spTo": 5},
+	{"name": "김요정이 젖은 잎을 밟고 미끄덩 넘어졌습니다.", "weight": 10, "requiredTags": "rain", "hpFrom": -3, "hpTo": -10},
+	{"name": "김요정이 거미줄에 얼굴부터 돌진했습니다.", "weight": 12, "spFrom": -3, "spTo": -10},
+	{"name": "김요정이 밤새 모기 한 마리와 사투를 벌였습니다.", "weight": 10, "requiredFeel": "hot", "hpFrom": -3, "hpTo": -8, "spFrom": -3, "spTo": -8},
+	{"name": "김요정이 물을 주다 자기가 흠뻑 젖었습니다.", "weight": 12, "hpFrom": 1, "hpTo": 5, "spFrom": 5, "spTo": 10, "money": -300, "reason": "수도세"},
+	{"name": "김요정이 날개 다친 나비를 며칠 돌봐 날려보냈습니다.", "weight": 5, "fpFrom": -5, "fpTo": -15, "spFrom": 15, "spTo": 30},
+	{"name": "김요정이 추운 날 참새에게 씨앗을 나눠줬습니다.", "weight": 8, "requiredFeel": "cold", "hpFrom": -3, "hpTo": -8, "spFrom": 10, "spTo": 20},
+	{"name": "김요정이 초록이의 오늘 기분을 정확히 알아들었습니다.", "weight": 8, "fpFrom": 3, "fpTo": 10, "spFrom": 5, "spTo": 15},
+	{"name": "김요정이 비가 올 걸 미리 알고 화분을 옮겨뒀습니다.", "weight": 6, "spFrom": 5, "spTo": 15, "fpFrom": 1, "fpTo": 5},
+	{"name": "김요정이 재채기를 하다 자기 콧바람에 스스로 놀랐습니다.", "weight": 10, "maxYear": 2, "spFrom": -3, "spTo": -8},
+	{"name": "김요정이 무심코 날개를 펴려다 등이 근질거렸습니다.", "weight": 8, "maxYear": 2, "hpFrom": -1, "hpTo": -5, "spFrom": 3, "spTo": 8},
+	{"name": "김요정이 편의점 삼각김밥에 인간 세상의 깊이를 느꼈습니다.", "weight": 10, "maxYear": 2, "hpFrom": 3, "hpTo": 10, "spFrom": 5, "spTo": 10, "money": -1500, "reason": "삼각김밥"},
 	{"name": "김요정이 커피라는 것을 마셔보았습니다", "weight": 10, "requiredFeel": "cold", "hpFrom": 1, "hpTo": 5, "fpFrom": -10, "fpTo": -20, "spFrom": -5, "spTo": 5, "money": -2500, "reason": "커피"},
 	{"name": "김요정이 커피라는 것을 마셔보았습니다", "weight": 10, "requiredFeel": "cold", "requiredTags": "snow", "hpFrom": 1, "hpTo": 5, "fpFrom": -10, "fpTo": -20, "spFrom": -5, "spTo": 5, "money": -2500, "reason": "커피"},
 	{"name": "김요정이 커피라는 것을 마셔보았습니다", "weight": 10, "requiredFeel": "normal", "hpFrom": 1, "hpTo": 5, "fpFrom": -10, "fpTo": -20, "spFrom": -5, "spTo": 5, "money": -2500, "reason": "커피"},
@@ -174,6 +192,9 @@ window.eventManager = {
                 const reqTags = e.requiredTags.split(',');
                 if (!reqTags.every(t => currentWeather.tags.includes(t))) return false;
             }
+			if (e.requiredMonth && !e.requiredMonth.includes(window.calendar.month)) return false;
+    		if (e.requiredSeed && kimData.stats.seedCount < e.requiredSeed) return false;
+			if (e.maxYear && window.calendar.year > e.maxYear) return false;
             return true;
         });
 
@@ -231,11 +252,8 @@ window.eventManager = {
 				const f = event[k + 'From'];
 				const t = event[k + 'To'];
 				if (f !== undefined && t !== undefined) {
-					// ★ 여기서 객체 형태로 담습니다!
-					effects[k] = { min: f, max: t };
-
-					// 로그용 계산 (여기서 한 번 계산)
-					const val = getRandom(f, t);
+					const val = getRandom(f, t);         // 한 번만 굴림
+					effects[k] = { min: val, max: val }; // 같은 값으로 고정
 					if (val !== 0) {
 						logMsg += `${k.toUpperCase()}: ${val > 0 ? '+' : ''}${val} `;
 					}
