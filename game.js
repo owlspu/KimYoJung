@@ -84,6 +84,7 @@ window.checkStatus = function() {
 
 
 window.showEnding = function(reason) {
+	localStorage.removeItem("kimFairySave");
     // 검은 화면 오버레이 생성
     const overlay = document.createElement('div');
     overlay.style.cssText = "position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.8); z-index:9999; color:white; text-align:center; padding-top:20%;";
@@ -99,7 +100,7 @@ window.showEnding = function(reason) {
         <p>🍫 먹은 초콜릿: ${kimData.stats.chocoCount}개</p>
         <p>🍦 먹은 아이스크림: ${kimData.stats.iceCount}개</p>
         <p>🌼 배웅한 홀씨: ${kimData.stats.seedCount}회</p>
-        <button onclick="location.reload()">다시 시작하기</button>
+        <button onclick="location.href='index.html'">다시 시작하기</button>
     `;
     document.body.appendChild(overlay);
 };
@@ -114,6 +115,7 @@ window.checkEndingTime = function() {
 };
 
 window.showSuccessEnding = function() {
+	localStorage.removeItem("kimFairySave");
     // 하얀 화면 생성
     const whiteOverlay = document.createElement('div');
     whiteOverlay.style.cssText = "position:fixed; top:0; left:0; width:100%; height:100%; background:white; z-index:9999; display:flex; flex-direction:column; align-items:center; justify-content:center; color:black; font-size:20px; line-height:1.8em; cursor:pointer;";
@@ -139,7 +141,7 @@ window.showSuccessEnding = function() {
 			`<p>🍫 먹은 초콜릿: ${kimData.stats.chocoCount}개</p>` +
 			`<p>🍦 먹은 아이스크림: ${kimData.stats.iceCount}개</p>` +
 			`<p>🌼 배웅한 홀씨: ${kimData.stats.seedCount}회</p>` +
-			`<button onclick='location.reload()'>처음으로</button>`;
+			`<button onclick="location.href='index.html'">처음으로</button>`;
         }
     };
 };
