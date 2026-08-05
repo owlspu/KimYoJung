@@ -47,7 +47,7 @@
             this.subtract(10000, "수도세");
         }
         if (date === 15) {
-            this.subtract(300000, "월세");
+            this.subtract(400000, "월세");
         }
         if (date === 18) {
             let gas = (month === 12 || month <= 3) ? 200000 : 8000;

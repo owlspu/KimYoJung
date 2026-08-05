@@ -2,12 +2,8 @@
 // game
 
 window.nextDay = function(triggerEvent = true) {
-    const date = window.calendar.nextDay(); 
-    
-    // 5년 5월 5일이라면 엔딩을 먼저 체크하고, 엔딩이 발생했다면 함수를 바로 종료
-    if (window.checkEndingTime()) {
-        return; 
-    }
+    const date = window.calendar.nextDay();
+    if (window.checkEndingTime()) return true;   // ★ true
 
     // 그 외의 경우에만 정상 진행
     const weatherData = window.world.updateWeather(date.month);
@@ -19,18 +15,26 @@ window.nextDay = function(triggerEvent = true) {
     
     ui.applyBackground(weatherData.bgColor); 
     window.kim.update(weatherData.temp);
-    
+    const feel = window.kim.getFeelStatus(weatherData.temp);
+	if (feel === "freezing" || feel === "burning") {
+		window.kim.applyEffect({
+			hp: { min: -1, max: -5 },
+			fp: { min: -1, max: -5 },
+			sp: { min: -1, max: -5 }
+		});
+	}
     money.updateFixedCosts(date.day, date.month, weatherData.temp); 
     money.tryEat();
     garden.update(date.month); 
     
     window.ui.refresh();
-    window.checkStatus(); // 배드엔딩 체크
+    if (window.checkStatus()) return true;        // ★ 배드엔딩도 true
+    return false;
 };
 
 window.buryKim = function() {
-    window.nextDay(false); // 1일차
-    window.nextDay(false); // 2일차
+    if (window.nextDay(false)) return;   // 1일차에 죽으면 멈춤
+    if (window.nextDay(false)) return;   // 2일차
     
     const logEl = document.querySelector('.status-log');
     if (logEl) logEl.innerText = "김요정을 땅에 묻었습니다.";
@@ -56,16 +60,16 @@ window.onload = function() {
     window.ui.refresh();
 };
 
-window.checkEnding = function() {
-    let reason = "";
-    if (kimData.hp < 0) reason = "대요정님... 인간으로 살기 너무 힘들어요.";
-    else if (kimData.fp < 0) reason = "나 너무 아파...";
-    else if (kimData.sp < 0) reason = "나는...";
+//window.checkEnding = function() {
+//    let reason = "";
+//    if (kimData.hp < 0) reason = "대요정님... 인간으로 살기 너무 힘들어요.";
+//    else if (kimData.fp < 0) reason = "나 너무 아파...";
+//    else if (kimData.sp < 0) reason = "나는...";
     
-    if (reason !== "") {
-        showEnding(reason);
-    }
-};
+//    if (reason !== "") {
+//        showEnding(reason);
+//    }
+//};
 
 window.checkStatus = function() {
     // 마이너스 체크 로직
@@ -95,11 +99,12 @@ window.showEnding = function(reason) {
         <h3>${reason}</h3>
         <p>"왜 그리 날 대충 키웠어어...!"</p>
         <hr>
-        <p>생존 기간: ${calendar.year}년 ${calendar.month}월 ${calendar.day}일</p>
-        <p>🌱 의뢰받은 초록이: ${kimData.stats.questCount}회</p>
-        <p>🍫 먹은 초콜릿: ${kimData.stats.chocoCount}개</p>
-        <p>🍦 먹은 아이스크림: ${kimData.stats.iceCount}개</p>
-        <p>🌼 배웅한 홀씨: ${kimData.stats.seedCount}회</p>
+		<p>🌱 의뢰받은 초록이: ${kimData.stats.questCount}회</p>
+		<p>🍫 먹은 초콜릿: ${kimData.stats.chocoCount}개</p>
+		<p>🍦 먹은 아이스크림: ${kimData.stats.iceCount}개</p>
+		<p>🌼 배웅한 홀씨: ${kimData.stats.seedCount}회</p>
+		<p>☕ 마셔본 커피와 탄산수: ${kimData.stats.drinkCount}잔</p>
+		<p>🍙 신상 간식에 도전해 본 횟수: ${kimData.stats.snackCount}번</p>
         <button onclick="location.href='index.html'">다시 시작하기</button>
     `;
     document.body.appendChild(overlay);
@@ -124,7 +129,7 @@ window.showSuccessEnding = function() {
     whiteOverlay.innerHTML = `<p id="ending-text">김요정에게 의뢰 전화가 왔습니다.</p>`;
     document.body.appendChild(whiteOverlay);
     
-    // 클릭할 때마다 대사 변경 (간단한 시나리오)
+    // 클릭할 때마다 대사 변경
     let clickCount = 0;
     whiteOverlay.onclick = () => {
         clickCount++;
@@ -135,12 +140,14 @@ window.showSuccessEnding = function() {
         if (clickCount === 3) textEl.innerText = '...';
         if (clickCount === 4) textEl.innerText = '"사장님 계세요?"';
         if (clickCount === 5) {
-            textEl.innerHTML = `김요정의 앞에 커피와 탄산수를 부어 죽어가는 풍란을<br>살려달라는 고객이 나타났습니다<br>과연 이 사람은 귀인일까요, 웬수가 될까요?<br><img src="image2/ending.png" width="120px"><br>` +
+            textEl.innerHTML = `김요정의 앞에 커피와 탄산수를 부어<br>죽어가는 풍란을 살려달라는 고객이 나타났습니다<br>과연 이 사람은 귀인일까요, 웬수일까요?<br><img src="image2/ending.png" width="120px"><br>` +
 			`<hr>` +
-			`<p>🌱 의뢰받은 초록이: ${kimData.stats.questCount}회</p>` +
-			`<p>🍫 먹은 초콜릿: ${kimData.stats.chocoCount}개</p>` +
-			`<p>🍦 먹은 아이스크림: ${kimData.stats.iceCount}개</p>` +
-			`<p>🌼 배웅한 홀씨: ${kimData.stats.seedCount}회</p>` +
+			`🌱 의뢰받은 초록이: ${kimData.stats.questCount}회<br>` +
+			`🍫 먹은 초콜릿: ${kimData.stats.chocoCount}개<br>` +
+			`🍦 먹은 아이스크림: ${kimData.stats.iceCount}개<br>` +
+			`🌼 배웅한 홀씨: ${kimData.stats.seedCount}회<br>` +
+			`☕ 마셔본 커피와 탄산수: ${kimData.stats.drinkCount}잔<br>` +
+			`🍙 신상 간식에 도전해 본 횟수: ${kimData.stats.snackCount}번<br>` +
 			`<button onclick="location.href='index.html'">처음으로</button>`;
         }
     };

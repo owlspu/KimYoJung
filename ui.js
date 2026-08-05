@@ -7,9 +7,9 @@ window.ui = {
         const logEl = document.querySelector('.status-log');
         
         // 1. 상태 메시지 업데이트
-        if (logEl && weather) {
-            logEl.innerText = window.kim.getStatusMessage(weather.temp);
-        }
+		if (logEl && weather) {
+			logEl.innerHTML = window.kim.getStatusMessage(weather.temp);
+		}
 
         // 2. 수치 및 게이지 업데이트
         document.querySelector('.HP-text').innerText = `${window.kim.data.hp}/100`;
@@ -22,7 +22,7 @@ window.ui = {
         
         document.getElementById('money').innerText = "💰" + money.amount.toLocaleString() + "원";
         
-        // 3. 옷 이미지 업데이트 (이 로직을 refresh 안으로 넣었습니다)
+        // 3. 옷 이미지 업데이트
         const currentClothes = window.kim.data.equipped.clothes;
         const imagePath = window.kim.data.clothesImages[currentClothes];
         const bodyImg = document.querySelector('.fairy .body');

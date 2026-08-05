@@ -58,10 +58,10 @@ function updateWeather(m) {
 		6:  [16, 25],
 		7:  [22, 31],
 		8:  [28, 37],
-		9:  [24, 33],
-		10: [18, 27],
-		11: [12, 21],
-		12: [-10, 8]
+		9:  [21, 30],
+		10: [15, 24],
+		11: [9, 18],
+		12: [-10, 6]
 	};
 	// 1. 기온 결정
 	const [minTemp, maxTemp] = monthTemp[m] || [10, 23];
@@ -106,7 +106,7 @@ function updateWeather(m) {
         tags: tags,
         icon: data.icon,
         temp: temp,
-        bgColor: data.bgColor // 이게 없어서 배경이 안 변했던 것!
+        bgColor: data.bgColor
     };
     
     // 2. 화면 업데이트 (아이콘과 이름)

@@ -5,7 +5,7 @@ const kimData = {
     hp: 100,
     fp: 100,
     sp: 100,
-    inventory: ["완전무장","도롱이 누발 패딩", "랄푸로렌 코트", "누발 후드티","파랑 럭비티", "티에 청바지","찜질복", "토레따 원피스"],
+    inventory: ["완전무장","도롱이 누발 패딩", "랄푸로렌 코트", "랄푸로렌 원피스","랄푸로렌 바람막이", "누발 후드티","파랑 럭비티", "아디도스 백수룩","티에 청바지","찜질복","아스끄림 티셔츠","토레따 원피스"],
     equipped: {
         clothes: "티에 청바지"
     },
@@ -13,27 +13,37 @@ const kimData = {
 		"완전무장": 30,
         "도롱이 누발 패딩": 25,
         "랄푸로렌 코트": 20,
+		"랄푸로렌 원피스": 20,
+		"랄푸로렌 바람막이": 15,
 		"누발 후드티": 15,
 		"파랑 럭비티": 10,
+		"아디도스 백수룩": 5,
         "티에 청바지": 5,
 		"찜질복": 0,
+		"아스끄림 티셔츠": -5,
 		"토레따 원피스": -5
     },
     clothesImages: {
 		"완전무장":"image2/kkong.png",
         "도롱이 누발 패딩": "image2/padding.png",
         "랄푸로렌 코트": "image2/coat.png",
+		"랄푸로렌 원피스": "image2/opc_at.png",
+		"랄푸로렌 바람막이": "image2/polo.png",
         "누발 후드티": "image2/hoody.png",
-        "파랑 럭비티": "image2/hypp.png",		
+        "파랑 럭비티": "image2/hypp.png",	
+		"아디도스 백수룩": "image2/adidos.png",
         "티에 청바지": "image2/body.png",		
         "찜질복": "image2/jjim.png",
+		"아스끄림 티셔츠": "image2/icecream.png",
         "토레따 원피스": "image2/opc.png"
     },
 	stats: {
         questCount: 0,      // 의뢰 받은 횟수
         chocoCount: 0,      // 먹은 초콜릿
         iceCount: 0,        // 먹은 아이스크림
-        seedCount: 0        // 배웅한 홀씨
+        seedCount: 0,      // 배웅한 홀씨
+		drinkCount: 0,      // 마셔본 커피+탄산수
+		snackCount: 0       // 신상 간식 도전
     }
 };
     
@@ -67,16 +77,15 @@ window.kim = {
             this.data.inventory.push(clothesName);
         }
     },
-	update: function(temp) {
-	},
     getStatusMessage: function(actualTemp) {
-		// ★ 여기서 옷 보너스를 더해야 합니다!
 		const feelTemp = this.getFeelingTemp(actualTemp);
-        if (feelTemp < 15) return "김요정은 지금 좀 추워요.";
-		if (feelTemp > 30) return "김요정은 지금 좀 더워요.";
+		if (feelTemp <= 5)  return `<span style="color:#1d4bdf">김요정은 지금 너무 추워요!</span>`;
+		if (feelTemp < 15)  return `<span style="color:#3079C9">김요정은 지금 좀 추워요.</span>`;
+		if (feelTemp > 40)  return `<span style="color:#eb3434">김요정은 지금 너무 더워요!</span>`;
+		if (feelTemp > 30)  return `<span style="color:#C76C22">김요정은 지금 좀 더워요.</span>`;
 		return "김요정은 지금 딱 좋아요.";
-    },
-	applyEffect: function(effects) {
+	},
+		applyEffect: function(effects) {
 		const getRandom = (val) => {
 			// From/To가 없는 경우 0으로 취급
 			const from = val.min || 0;
@@ -102,11 +111,13 @@ window.kim = {
 		}
 	},
     getFeelStatus: function(actualTemp) {
-		const feelTemp = this.getFeelingTemp(actualTemp); // ★ 여기서 옷 효과 적용!
-		if (feelTemp < 15) return "cold";
-		if (feelTemp > 30) return "hot";
+		const feelTemp = this.getFeelingTemp(actualTemp);
+		if (feelTemp <= 5)  return "freezing";  // 너무 추움
+		if (feelTemp < 15)  return "cold";
+		if (feelTemp > 40)  return "burning";   // 너무 더움
+		if (feelTemp > 30)  return "hot";
 		return "normal";
-    }
+	},
 };
 
 window.kim.update = function(temp) {

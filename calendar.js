@@ -27,7 +27,7 @@ window.calendar = {
             this.year++;
             
             // ★ 선택 사항: 4년마다 윤년 처리가 필요하다면 
-            // 여기서 year % 4 === 0 일 때 2월을 29일로 바꾸는 로직을 추가하면 됩니다.
+            // 여기서 year % 4 === 0 일 때 2월을 29일로 바꾸는 로직을 추가
         }
         
         this.updateDisplay();
@@ -39,9 +39,4 @@ window.calendar = {
         
         return { year: this.year, month: this.month, day: this.day };
     }
-};
-
-window.onload = function() {
-    window.calendar.updateDisplay();
-	window.world.updateWeather(window.calendar.month);
 };
